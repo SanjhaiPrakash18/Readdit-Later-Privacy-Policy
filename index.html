@@ -109,6 +109,14 @@
             margin: 20px 0;
         }
 
+        .ai-notice {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+            margin: 20px 0;
+        }
+
         .contact-info {
             background-color: #d1ecf1;
             padding: 20px;
@@ -164,6 +172,38 @@
             margin-bottom: 30px;
         }
 
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+
+        .toc ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .toc li {
+            margin-bottom: 5px;
+        }
+
+        .toc a {
+            color: #495057;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            color: #ff4500;
+        }
+
         @media (max-width: 768px) {
             .header {
                 padding: 30px 20px;
@@ -191,235 +231,330 @@
 <body>
 <div class="header">
     <h1>Readdit Later</h1>
-    <p style="text-align: center;">Privacy Policy</p>
+    <p>Privacy Policy</p>
 </div>
 
-    <div class="container">
-        <div class="policy-content">
-            <div class="effective-date" style="text-align: left;">
-    <strong>Effective Date:</strong> August 10, 2025<br>
-    <strong>Last Updated:</strong> August 10, 2025
+<div class="container">
+    <div class="policy-content">
+        <div class="effective-date">
+            <strong>Effective Date:</strong> November 1, 2025<br>
+            <strong>Last Updated:</strong> November 1, 2025
         </div>
 
-            <h2>Introduction</h2>
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#introduction">1. Introduction</a></li>
+                <li><a href="#information-collected">2. Information We Collect</a></li>
+                <li><a href="#ai-features">3. AI Features and Data Processing</a></li>
+                <li><a href="#data-usage">4. How We Use Your Information</a></li>
+                <li><a href="#third-party">5. Third-Party Services</a></li>
+                <li><a href="#data-storage">6. Data Storage and Security</a></li>
+                <li><a href="#privacy-controls">7. Privacy Controls and Consent</a></li>
+                <li><a href="#user-rights">8. Your Rights and Controls</a></li>
+                <li><a href="#data-retention">9. Data Retention</a></li>
+                <li><a href="#children">10. Children's Privacy</a></li>
+                <li><a href="#updates">11. Policy Updates</a></li>
+                <li><a href="#contact">12. Contact Information</a></li>
+            </ul>
+        </div>
+
+        <h2 id="introduction">1. Introduction</h2>
+        <p>
+            Welcome to Readdit Later, a Chrome extension designed to help you save, organize, and enhance your Reddit experience. 
+            This Privacy Policy explains how we collect, use, store, and protect your information when you use our extension and its AI-powered features.
+        </p>
+
+        <div class="important">
+            <strong>Privacy-First Approach:</strong> Readdit Later prioritizes your privacy. Most data processing happens locally in your browser, and we only use external services with your explicit consent. You maintain full control over your data and privacy preferences.
+        </div>
+
+        <h2 id="information-collected">2. Information We Collect</h2>
+
+        <h3>2.1 Reddit Account Information</h3>
+        <p>When you connect your Reddit account via OAuth authentication, we collect:</p>
+        <ul>
+            <li><strong>Reddit Username:</strong> To identify your account and display your profile</li>
+            <li><strong>OAuth Tokens:</strong> Access and refresh tokens for Reddit API access</li>
+            <li><strong>Saved Posts:</strong> Your Reddit saved posts including titles, content, subreddits, scores, and metadata</li>
+            <li><strong>Basic Profile Data:</strong> Public profile information as permitted by Reddit's OAuth scopes</li>
+        </ul>
+
+        <h3>2.2 Extension Usage Data</h3>
+        <p>We store locally in your browser:</p>
+        <ul>
+            <li>Your saved posts and organization preferences</li>
+            <li>Extension settings and customizations</li>
+            <li>Privacy preferences and consent choices</li>
+            <li>Synchronization timestamps</li>
+            <li>Local usage statistics (number of posts saved, subreddits accessed)</li>
+        </ul>
+
+        <h3>2.3 What We Do NOT Collect</h3>
+        <ul>
+            <li>Your Reddit password or login credentials</li>
+            <li>Private messages or direct communications</li>
+            <li>Posts you haven't explicitly saved</li>
+            <li>Your browsing history outside of Reddit</li>
+            <li>Personal identification beyond your Reddit username</li>
+            <li>Location data or device fingerprinting</li>
+        </ul>
+
+        <h2 id="ai-features">3. AI Features and Data Processing</h2>
+
+        <div class="ai-notice">
+            <strong>🤖 AI Features Require Consent:</strong> Our AI-powered features are entirely opt-in. You will be asked for explicit consent before any AI processing occurs, and you can disable these features at any time.
+        </div>
+
+        <h3>3.1 AI-Powered Features</h3>
+        <p>With your consent, Readdit Later offers:</p>
+        <ul>
+            <li><strong>AI Summaries:</strong> Automatic post summarization using OpenAI/OpenRouter</li>
+            <li><strong>Sentiment Analysis:</strong> Emotion and tone detection in posts</li>
+            <li><strong>Auto-Labeling:</strong> Automatic categorization and tagging</li>
+            <li><strong>Natural Language Search:</strong> Enhanced search capabilities</li>
+            <li><strong>Subreddit Analysis:</strong> Community insights and statistics</li>
+        </ul>
+
+        <h3>3.2 AI Data Processing</h3>
+        <p>When AI features are enabled:</p>
+        <ul>
+            <li>Post content is sent to our secure server (reddit-later-server.vercel.app)</li>
+            <li>Our server processes requests using OpenRouter API with OpenAI's GPT-4o-mini model</li>
+            <li>Only post titles, content, and subreddit names are included</li>
+            <li>Personal identifiers and account information are automatically removed</li>
+            <li>Content over 1,500 characters is truncated to minimize data exposure</li>
+            <li>No data is permanently stored by AI providers or our server</li>
+        </ul>
+
+        <h3>3.3 Data Minimization</h3>
+        <p>To protect your privacy, we implement data minimization:</p>
+        <ul>
+            <li>Truncate long posts (over 1,500 characters)</li>
+            <li>Remove email addresses, phone numbers, and other personal identifiers</li>
+            <li>Exclude user comments and personal notes</li>
+            <li>Send only necessary context for AI processing</li>
+        </ul>
+
+        <h2 id="data-usage">4. How We Use Your Information</h2>
+
+        <h3>4.1 Core Extension Functions</h3>
+        <ul>
+            <li>Display and organize your saved Reddit posts</li>
+            <li>Synchronize posts across browser sessions</li>
+            <li>Provide search and filtering capabilities</li>
+            <li>Generate usage statistics and insights</li>
+            <li>Enable import/export functionality</li>
+        </ul>
+
+        <h3>4.2 AI Enhancement (With Consent)</h3>
+        <ul>
+            <li>Generate summaries of lengthy posts</li>
+            <li>Analyze sentiment and emotional tone</li>
+            <li>Automatically categorize and label posts</li>
+            <li>Provide natural language search</li>
+            <li>Offer subreddit insights and trends</li>
+        </ul>
+
+        <h2 id="third-party">5. Third-Party Services</h2>
+
+        <h3>5.1 Reddit API</h3>
+        <p>We use Reddit's official API for:</p>
+        <ul>
+            <li>User authentication via OAuth 2.0</li>
+            <li>Retrieving saved posts and profile information</li>
+            <li>Performing save/unsave operations</li>
+        </ul>
+        <p>Reddit API usage is governed by <a href="https://www.reddit.com/policies/privacy-policy" target="_blank">Reddit's Privacy Policy</a> and <a href="https://www.reddit.com/wiki/api-terms" target="_blank">API Terms</a>.</p>
+
+        <h3>5.2 AI Services (With Consent)</h3>
+        <p>When AI features are enabled, we use:</p>
+        <ul>
+            <li><strong>OpenRouter API:</strong> For accessing OpenAI's GPT-4o-mini model for text processing and analysis</li>
+            <li><strong>Our Secure Server:</strong> reddit-later-server.vercel.app processes AI requests without storing data</li>
+            <li><strong>Privacy Controls:</strong> All AI processing includes automatic data sanitization</li>
+        </ul>
+        <p>These services are used only with your explicit consent and are subject to their respective privacy policies.</p>
+
+        <h3>5.3 Notion Integration (Optional)</h3>
+        <p>If you choose to enable Notion integration:</p>
+        <ul>
+            <li>Post data can be exported to your Notion workspace using our database template</li>
+            <li>OAuth authentication with Notion is required (Client ID: 275d872b-594c-805e-b3cc-00372d1e143b)</li>
+            <li>Data sharing is limited to your selected posts and includes titles, content, URLs, and metadata</li>
+            <li>You can revoke access through Notion's integration settings at any time</li>
+        </ul>
+
+        <h2 id="data-storage">6. Data Storage and Security</h2>
+
+        <h3>6.1 Local Storage</h3>
+        <div class="highlight">
+            <strong>Primary Storage:</strong> All your personal data is stored locally in your browser using Chrome's secure storage APIs. This means your data never leaves your device unless you explicitly choose to use AI features or export to third-party services.
+        </div>
+
+        <h3>6.2 Security Measures</h3>
+        <ul>
+            <li><strong>OAuth 2.0:</strong> Secure Reddit authentication without password storage</li>
+            <li><strong>HTTPS Encryption:</strong> All external communications use encrypted connections</li>
+            <li><strong>Token Security:</strong> Secure token storage and automatic refresh</li>
+            <li><strong>Content Security Policy:</strong> Strict CSP prevents unauthorized script execution</li>
+            <li><strong>Rate Limiting:</strong> API request throttling prevents abuse</li>
+            <li><strong>Minimal Permissions:</strong> Only necessary browser permissions requested</li>
+        </ul>
+
+        <h3>6.3 Server Processing (AI Features Only)</h3>
+        <p>When using AI features:</p>
+        <ul>
+            <li>Data is transmitted securely via HTTPS</li>
+            <li>Our server processes requests without permanent storage</li>
+            <li>AI providers receive only sanitized, anonymized content</li>
+            <li>No user identification or account data is shared</li>
+        </ul>
+
+        <h2 id="privacy-controls">7. Privacy Controls and Consent</h2>
+
+        <h3>7.1 Consent Management</h3>
+        <p>Readdit Later implements a comprehensive consent system using our PrivacyManager class:</p>
+        <ul>
+            <li><strong>Initial Setup:</strong> Interactive consent dialog appears on first use with clear explanations</li>
+            <li><strong>Granular Controls:</strong> Separate toggles for AI processing, Notion integration, and data minimization</li>
+            <li><strong>Easy Management:</strong> Privacy settings accessible through Settings → Privacy</li>
+            <li><strong>No Forced Consent:</strong> Core extension functionality works completely without AI features</li>
+        </ul>
+
+        <h3>7.2 Privacy Preferences</h3>
+        <p>You can control:</p>
+        <ul>
+            <li>AI processing consent (enable/disable all AI features)</li>
+            <li>Data minimization settings (reduce data sent to AI)</li>
+            <li>Notion integration permissions</li>
+            <li>Individual feature toggles</li>
+        </ul>
+
+        <h3>7.3 Transparent Processing</h3>
+        <ul>
+            <li>Clear notifications when AI processing occurs</li>
+            <li>Detailed explanations of what data is processed</li>
+            <li>Ability to review and modify consent choices</li>
+            <li>Option to use extension without any AI features</li>
+        </ul>
+
+        <h2 id="user-rights">8. Your Rights and Controls</h2>
+
+        <h3>8.1 Data Access</h3>
+        <ul>
+            <li><strong>View Data:</strong> Access all stored information through the extension interface</li>
+            <li><strong>Export Data:</strong> Download your data in standard formats</li>
+            <li><strong>Data Inspection:</strong> Review what information is stored locally</li>
+        </ul>
+
+        <h3>8.2 Data Control</h3>
+        <ul>
+            <li><strong>Modify Settings:</strong> Change privacy preferences at any time</li>
+            <li><strong>Selective Deletion:</strong> Remove specific posts or categories</li>
+            <li><strong>Complete Removal:</strong> Delete all extension data</li>
+            <li><strong>Account Disconnection:</strong> Revoke Reddit access completely</li>
+        </ul>
+
+        <h3>8.3 Third-Party Access Control</h3>
+        <ul>
+            <li><strong>Reddit Permissions:</strong> Revoke extension access via <a href="https://www.reddit.com/prefs/apps/" target="_blank">Reddit's authorized apps</a></li>
+            <li><strong>Notion Access:</strong> Disconnect Notion integration independently</li>
+            <li><strong>AI Processing:</strong> Disable AI features without affecting core functionality</li>
+        </ul>
+
+        <h2 id="data-retention">9. Data Retention</h2>
+
+        <ul>
+            <li><strong>Local Data:</strong> Retained until you delete or uninstall the extension</li>
+            <li><strong>Authentication Tokens:</strong> Stored until logout or expiration</li>
+            <li><strong>AI Processing:</strong> No permanent retention by AI services</li>
+            <li><strong>Server Logs:</strong> Minimal logging, automatically purged within 30 days</li>
+            <li><strong>Privacy Preferences:</strong> Maintained until manually changed</li>
+        </ul>
+
+        <h2 id="children">10. Children's Privacy</h2>
+
+        <p>
+            Readdit Later is not intended for children under 13 years of age. Since the extension requires a Reddit account, 
+            users must meet Reddit's minimum age requirements (13+ in most jurisdictions, 16+ in some regions). 
+            We do not knowingly collect personal information from children under the applicable minimum age.
+        </p>
+
+        <h2 id="updates">11. Policy Updates</h2>
+
+        <p>We may update this Privacy Policy to reflect changes in our practices or legal requirements. When updates occur:</p>
+        <ul>
+            <li>The "Last Updated" date will be revised</li>
+            <li>Significant changes will be highlighted in extension update notes</li>
+            <li>Users will be notified through the extension interface</li>
+            <li>Continued use after updates constitutes acceptance of changes</li>
+            <li>Major privacy changes may require renewed consent</li>
+        </ul>
+
+        <h2 id="contact">12. Contact Information</h2>
+
+        <div class="contact-info">
+            <h3>Privacy Questions & Requests</h3>
             <p>
-                Welcome to Readdit Later, a Chrome extension designed to help you save and manage your Reddit posts efficiently. 
-                This Privacy Policy explains how we collect, use, store, and protect your information when you use our extension.
+                For privacy-related questions, data requests, or concerns about this policy, please contact us:
             </p>
-
-            <div class="important">
-                <strong>Important:</strong> Readdit Later operates entirely within your browser and does not send your personal data to external servers unless explicitly stated. Your privacy and data security are our top priorities.
-            </div>
-
-            <h2>Information We Collect</h2>
-
-            <h3>Information Collected Through Reddit OAuth</h3>
-            <p>When you authenticate with Reddit using our extension, we collect:</p>
-            <ul>
-                <li><strong>Reddit Username:</strong> Used to identify your account and fetch your saved posts</li>
-                <li><strong>OAuth Tokens:</strong> Access and refresh tokens provided by Reddit for API access</li>
-                <li><strong>Saved Posts Data:</strong> Content of your saved Reddit posts including titles, subreddits, URLs, scores, and metadata</li>
-                <li><strong>Basic Profile Information:</strong> As permitted by Reddit's OAuth scopes (identity, read, history, save)</li>
-            </ul>
-
-            <h3>Information Stored Locally</h3>
-            <p>The following information is stored locally in your browser using Chrome's storage API:</p>
-            <ul>
-                <li>Your saved Reddit posts and their metadata</li>
-                <li>Extension settings and preferences</li>
-                <li>Authentication tokens and session data</li>
-                <li>Synchronization timestamps</li>
-                <li>Usage statistics (posts saved, subreddits accessed)</li>
-            </ul>
-
-            <h3>Information We Do NOT Collect</h3>
-            <ul>
-                <li>Your Reddit password</li>
-                <li>Personal messages or private communications</li>
-                <li>Posts you haven't explicitly saved</li>
-                <li>Browsing history outside of Reddit</li>
-                <li>Personal identification information beyond your Reddit username</li>
-            </ul>
-
-            <h2>How We Use Your Information</h2>
-
-            <h3>Primary Purposes</h3>
-            <ul>
-                <li><strong>Core Functionality:</strong> Display and manage your saved Reddit posts</li>
-                <li><strong>Synchronization:</strong> Keep your saved posts up-to-date across browser sessions</li>
-                <li><strong>Organization:</strong> Provide filtering, sorting, and search capabilities</li>
-                <li><strong>Statistics:</strong> Show analytics about your saved posts and usage patterns</li>
-            </ul>
-
-            <h3>Data Processing Activities</h3>
-            <ul>
-                <li>Retrieving your saved posts from Reddit's API</li>
-                <li>Parsing and organizing post metadata</li>
-                <li>Creating local backups of your data</li>
-                <li>Generating usage statistics and insights</li>
-                <li>Facilitating post management actions (unsave, organize)</li>
-            </ul>
-
-            <h2>Data Storage and Security</h2>
-
-            <h3>Local Storage</h3>
-            <div class="highlight">
-                All your data is stored locally in your browser using Chrome's secure storage APIs. This means:
-                <ul>
-                    <li>Your data never leaves your device unless you explicitly interact with Reddit</li>
-                    <li>No third-party servers store your personal information</li>
-                    <li>You maintain complete control over your data</li>
-                </ul>
-            </div>
-
-            <h3>Security Measures</h3>
-            <ul>
-                <li><strong>OAuth 2.0:</strong> Secure authentication through Reddit's official OAuth system</li>
-                <li><strong>HTTPS Only:</strong> All Reddit API communications use encrypted HTTPS connections</li>
-                <li><strong>Token Security:</strong> Access tokens are securely stored and automatically refreshed</li>
-                <li><strong>Rate Limiting:</strong> API requests are rate-limited to prevent abuse</li>
-                <li><strong>Scope Limitation:</strong> We only request the minimum necessary Reddit permissions</li>
-            </ul>
-
-            <h2>Third-Party Services</h2>
-
-            <h3>Reddit API</h3>
             <p>
-                Our extension communicates with Reddit's official API to:
+                <strong>Email:</strong> <a href="mailto:sanjhaiprakash18@gmail.com">sanjhaiprakash18@gmail.com</a><br>
+                <strong>Subject Line:</strong> "Readdit Later Privacy Inquiry"<br>
+                <strong>Response Time:</strong> We aim to respond within 72 hours
             </p>
-            <ul>
-                <li>Authenticate your account</li>
-                <li>Retrieve your saved posts</li>
-                <li>Perform save/unsave operations</li>
-                <li>Access basic profile information</li>
-            </ul>
-            <p>
-                This communication is governed by <a href="https://www.reddit.com/policies/privacy-policy" target="_blank">Reddit's Privacy Policy</a> 
-                and <a href="https://www.reddit.com/wiki/api-terms" target="_blank">API Terms</a>.
-            </p>
+        </div>
 
-            <h3>No Analytics or Tracking</h3>
-            <p>
-                We do not use any third-party analytics services, tracking pixels, or advertising networks. 
-                Your usage of the extension is not monitored or reported to any external services.
-            </p>
+        <h2>Technical Details</h2>
 
-            <h2>Your Rights and Controls</h2>
+        <h3>Chrome Permissions Explained</h3>
+        <p>Our extension requests these specific Chrome permissions:</p>
+        <ul>
+            <li><strong>storage:</strong> Store your data and preferences locally</li>
+            <li><strong>tabs:</strong> Open Reddit links and manage extension interface</li>
+            <li><strong>alarms:</strong> Schedule background synchronization with Reddit</li>
+            <li><strong>identity:</strong> Handle secure Reddit OAuth authentication</li>
+            <li><strong>sidePanel:</strong> Display the extension interface in Chrome's side panel</li>
+        </ul>
 
-            <h3>Data Access and Portability</h3>
-            <ul>
-                <li><strong>View Your Data:</strong> Access all stored data through the extension's detailed view</li>
-                <li><strong>Export Data:</strong> All data is stored in standard formats and can be accessed through Chrome's developer tools</li>
-                <li><strong>Data Portability:</strong> Your data remains in open, accessible formats</li>
-            </ul>
+        <h3>Host Permissions</h3>
+        <p>We request access to these specific domains:</p>
+        <ul>
+            <li><strong>https://www.reddit.com/*:</strong> Interact with Reddit website and enhance browsing</li>
+            <li><strong>https://oauth.reddit.com/*:</strong> Handle Reddit OAuth authentication</li>
+            <li><strong>https://api.reddit.com/*:</strong> Access Reddit's API for saved posts</li>
+            <li><strong>https://reddit-later-server.vercel.app/*:</strong> Our server for AI processing (with consent)</li>
+            <li><strong>https://api.notion.com/*:</strong> Notion integration (if enabled)</li>
+            <li><strong>https://api.openai.com/*:</strong> OpenAI API access (via our server)</li>
+            <li><strong>https://openrouter.ai/*:</strong> Alternative AI models (via our server)</li>
+        </ul>
 
-            <h3>Data Deletion</h3>
-            <ul>
-                <li><strong>Logout:</strong> Removes all authentication tokens and clears stored data</li>
-                <li><strong>Uninstall Extension:</strong> Permanently removes all locally stored data</li>
-                <li><strong>Clear Browser Data:</strong> Standard Chrome data clearing removes extension data</li>
-                <li><strong>Selective Deletion:</strong> Remove individual posts or clear specific data categories</li>
-            </ul>
+        <div class="important">
+            <strong>Your Privacy Rights:</strong> You can revoke the extension's access to your Reddit account at any time through 
+            <a href="https://www.reddit.com/prefs/apps/" target="_blank">Reddit's authorized applications page</a>. 
+            You can also disable AI features while keeping core functionality intact.
+        </div>
 
-            <h3>Reddit Account Controls</h3>
-            <ul>
-                <li><strong>Revoke Access:</strong> Revoke extension permissions through <a href="https://www.reddit.com/prefs/apps/" target="_blank">Reddit's authorized applications</a></li>
-                <li><strong>Account Deletion:</strong> Deleting your Reddit account invalidates all associated tokens</li>
-            </ul>
+        <h2>Acknowledgments</h2>
 
-            <h2>Data Retention</h2>
+        <p>
+            By using Readdit Later, you acknowledge that you have read, understood, and agree to be bound by this Privacy Policy. 
+            Your use of AI features constitutes additional consent for the data processing described in this policy. 
+            If you disagree with any part of this policy, you may use the extension's basic features or discontinue use entirely.
+        </p>
 
-            <ul>
-                <li><strong>Saved Posts:</strong> Retained locally until you delete them or uninstall the extension</li>
-                <li><strong>Authentication Tokens:</strong> Stored until logout or token expiration</li>
-                <li><strong>Settings:</strong> Maintained until changed or extension removal</li>
-                <li><strong>No Server Storage:</strong> We do not retain any data on external servers</li>
-            </ul>
-
-            <h2>Children's Privacy</h2>
-
-            <p>
-                Our extension is not intended for use by children under 13 years of age. 
-                Since the extension requires a Reddit account, users must meet Reddit's minimum age requirements. 
-                We do not knowingly collect personal information from children under 13.
-            </p>
-
-            <h2>Changes to This Privacy Policy</h2>
-
-            <p>
-                We may update this Privacy Policy periodically to reflect changes in our practices or applicable law. 
-                When we make changes:
-            </p>
-            <ul>
-                <li>We will update the "Last Updated" date at the top of this policy</li>
-                <li>Significant changes will be communicated through the extension's update notes</li>
-                <li>Continued use of the extension after changes constitutes acceptance of the updated policy</li>
-            </ul>
-
-            <h2>International Users</h2>
-
-            <p>
-                This extension can be used globally, but please note:
-            </p>
-            <ul>
-                <li>Data processing occurs locally on your device</li>
-                <li>Reddit API communications are governed by Reddit's international policies</li>
-                <li>Your data protection rights depend on your local jurisdiction</li>
-            </ul>
-
-            <h2>Technical Information</h2>
-
-            <h3>Permissions Explained</h3>
-            <p>Our extension requests the following Chrome permissions:</p>
-            <ul>
-                <li><strong>storage:</strong> Save your data locally</li>
-                <li><strong>tabs:</strong> Open Reddit links in new tabs</li>
-                <li><strong>activeTab:</strong> Enhance Reddit browsing experience</li>
-                <li><strong>alarms:</strong> Schedule background synchronization</li>
-                <li><strong>identity:</strong> Handle Reddit OAuth authentication</li>
-                <li><strong>sidePanel:</strong> Display extension interface</li>
-            </ul>
-
-            <h3>Host Permissions</h3>
-            <ul>
-                <li><strong>https://www.reddit.com/*:</strong> Interact with Reddit website</li>
-                <li><strong>https://oauth.reddit.com/*:</strong> Access Reddit's OAuth API</li>
-                <li><strong>https://api.reddit.com/*:</strong> Access Reddit's data API</li>
-            </ul>
-
-            <div class="contact-info">
-                <h3>Contact Information</h3>
-                <p>
-                    If you have questions, concerns, or requests regarding this Privacy Policy or your data, 
-                    please contact us at:
-                </p>
-                <p>
-                    <strong>Email:</strong> <a href="mailto:sanjhaiprakash18@gmail.com">sanjhaiprakash18@gmail.com</a><br>
-                    <strong>Subject:</strong> Readdit Later Privacy Inquiry
-                </p>
-                <p>
-                    We will respond to all legitimate requests within a reasonable timeframe.
-                </p>
-            </div>
-
-            <h2>Acknowledgments</h2>
-
-            <p>
-                By using Readdit Later, you acknowledge that you have read, understood, and agree to be bound by this Privacy Policy. 
-                If you do not agree with any part of this policy, please do not use our extension.
-            </p>
-
-            <div class="important">
-                <strong>Remember:</strong> You can revoke the extension's access to your Reddit account at any time through 
-                <a href="https://www.reddit.com/prefs/apps/" target="_blank">Reddit's authorized applications page</a>.
-            </div>
+        <div class="highlight">
+            <strong>Privacy Promise:</strong> We are committed to transparency, user control, and data minimization. 
+            Your trust is essential to us, and we will continue to prioritize your privacy as we develop new features.
         </div>
     </div>
+</div>
 
 <div class="footer">
-    <p style="text-align: center;">
+    <p>
         © 2025 Readdit Later. This extension is not affiliated with Reddit, Inc.<br>
-        Reddit is a trademark of Reddit, Inc.
+        Reddit is a trademark of Reddit, Inc. | OpenAI and Notion are trademarks of their respective owners.
     </p>
 </div>
 </body>
