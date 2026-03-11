@@ -19,9 +19,7 @@
             font-family: 'Rethink Sans', sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #f8f9fa;
-            background-image: radial-gradient(circle, #e9ecef 1px, rgba(0, 0, 0, 0) 2px);
-            background-size: 20px 20px;
+            background-color: #ffffff;
         }
 
         .header {
@@ -41,6 +39,13 @@
         .header p {
             font-size: 18px;
             opacity: 0.9;
+        }
+
+        .disclaimer {
+            font-size: 12px;
+            margin-top: 15px;
+            opacity: 0.8;
+            font-style: italic;
         }
 
         .container {
@@ -240,6 +245,7 @@
 <div class="header">
     <h1>Readdit Later</h1>
     <p style="text-align: center;">Privacy Policy</p>
+    <p class="disclaimer">Independent third-party tool. Not affiliated with or endorsed by Reddit Inc.</p>
 </div>
 
 <div class="container">
@@ -396,6 +402,7 @@
             <li><strong>Auto-Labeling:</strong> Automatic categorization</li>
             <li><strong>Natural Language Search:</strong> Semantic search using embeddings</li>
             <li><strong>Subreddit Analysis:</strong> Community insights</li>
+            <li><strong>AI Chat Agent:</strong> Conversational assistant for searching, organizing, and managing saved posts using Anthropic's Claude 3.5 Haiku model</li>
         </ul>
 
         <h3>4.2 AI Data Flow</h3>
@@ -414,8 +421,14 @@
             <li>Long posts are truncated (max 2000-4000 characters depending on feature)</li>
             <li>Personal identifiers are removed when possible</li>
             <li>Only necessary context is sent (title, subreddit, content)</li>
-            <li>User account information is not included in AI requests</li>
+            <li>Your Reddit username is sent to our server for credit tracking and subscription verification, but is not forwarded to third-party AI providers</li>
         </ul>
+
+        <h3>4.4 AI Chat History</h3>
+        <p>
+            Conversations with the AI Chat Agent are temporarily stored in your browser's local storage for up to 24 hours to maintain chat continuity.
+            This data is automatically deleted after 24 hours or when you clear the chat history. It is never sent to our servers for storage.
+        </p>
 
         <h2 id="data-usage">5. How We Use Your Information</h2>
 
@@ -467,10 +480,11 @@
         <h3>6.3 AI Services</h3>
         <ul>
             <li><strong>OpenRouter API:</strong> Gateway for accessing AI models</li>
-            <li><strong>OpenAI (GPT-4o-mini):</strong> Text analysis and generation</li>
+            <li><strong>OpenAI (GPT-4o-mini):</strong> Text analysis, summarization, and generation</li>
+            <li><strong>Anthropic (Claude 3.5 Haiku):</strong> AI Chat Agent conversations and tool-assisted post management</li>
             <li><strong>Processing:</strong> Via our secure server (reddit-later-server.vercel.app)</li>
         </ul>
-        <p>Governed by <a href="https://openai.com/policies/privacy-policy" target="_blank">OpenAI's Privacy Policy</a>.</p>
+        <p>Governed by <a href="https://openai.com/policies/privacy-policy" target="_blank">OpenAI's Privacy Policy</a> and <a href="https://www.anthropic.com/privacy" target="_blank">Anthropic's Privacy Policy</a>.</p>
 
         <h3>6.4 Payment Processing</h3>
         <ul>
