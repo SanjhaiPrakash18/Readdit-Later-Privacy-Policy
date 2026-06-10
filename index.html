@@ -46,7 +46,6 @@
             margin-top: 15px;
             opacity: 0.8;
             font-style: italic;
-            text-align: center;
         }
 
         .container {
@@ -252,8 +251,8 @@
 <div class="container">
     <div class="policy-content">
         <div class="effective-date">
-            <strong>Effective Date:</strong> March 11, 2026<br>
-            <strong>Last Updated:</strong> March 11, 2026
+            <strong>Effective Date:</strong> January 14, 2026<br>
+            <strong>Last Updated:</strong> June 10, 2026
         </div>
 
         <div class="toc">
@@ -262,16 +261,17 @@
                 <li><a href="#introduction">1. Introduction</a></li>
                 <li><a href="#information-collected">2. Information We Collect</a></li>
                 <li><a href="#server-storage">3. Server-Side Data Storage</a></li>
-                <li><a href="#ai-features">4. AI Features and Data Processing</a></li>
-                <li><a href="#data-usage">5. How We Use Your Information</a></li>
-                <li><a href="#third-party">6. Third-Party Services</a></li>
-                <li><a href="#data-security">7. Data Storage and Security</a></li>
-                <li><a href="#user-rights">8. Your Rights and Data Control</a></li>
-                <li><a href="#data-deletion">9. Data Deletion and Account Removal</a></li>
-                <li><a href="#data-retention">10. Data Retention</a></li>
-                <li><a href="#children">11. Children's Privacy</a></li>
-                <li><a href="#updates">12. Policy Updates</a></li>
-                <li><a href="#contact">13. Contact Information</a></li>
+                <li><a href="#ai-tools-sync">4. AI Tools Integration (MCP Sync)</a></li>
+                <li><a href="#ai-features">5. AI Features and Data Processing</a></li>
+                <li><a href="#data-usage">6. How We Use Your Information</a></li>
+                <li><a href="#third-party">7. Third-Party Services</a></li>
+                <li><a href="#data-security">8. Data Storage and Security</a></li>
+                <li><a href="#user-rights">9. Your Rights and Data Control</a></li>
+                <li><a href="#data-deletion">10. Data Deletion and Account Removal</a></li>
+                <li><a href="#data-retention">11. Data Retention</a></li>
+                <li><a href="#children">12. Children's Privacy</a></li>
+                <li><a href="#updates">13. Policy Updates</a></li>
+                <li><a href="#contact">14. Contact Information</a></li>
             </ul>
         </div>
 
@@ -326,7 +326,7 @@
         <h2 id="server-storage">3. Server-Side Data Storage</h2>
 
         <div class="server-notice">
-            <strong>⚠️ Important: Server Storage Disclosure</strong><br>
+            <strong>Important: Server Storage Disclosure</strong><br>
             Unlike purely local extensions, Readdit Later stores certain data on our secure servers (Supabase) 
             to enable premium features like cross-device sync and persistent data storage.
         </div>
@@ -369,6 +369,16 @@
             <li>Creation and update timestamps</li>
         </ul>
 
+        <h4>AI Tools Sync Table (opt-in only):</h4>
+        <ul>
+            <li>Randomly generated token (not linked to your Reddit identity)</li>
+            <li>Post titles, subreddits, authors, URLs, and scores</li>
+            <li>Labels, notes, and read status</li>
+            <li>Post text content (truncated to 2,000 characters)</li>
+            <li>Collection names and post assignments</li>
+            <li>Last sync timestamp</li>
+        </ul>
+
         <h3>3.2 Why We Store Data on Servers</h3>
         <p>Server storage enables:</p>
         <ul>
@@ -388,15 +398,70 @@
             <li>Local search history</li>
         </ul>
 
-        <h2 id="ai-features">4. AI Features and Data Processing</h2>
+        <h2 id="ai-tools-sync">4. AI Tools Integration (MCP Sync)</h2>
+
+        <div class="server-notice">
+            <strong>Opt-in Feature:</strong> The AI Tools sync feature is entirely optional. No data is synced to the server
+            until you explicitly enable it by clicking "Enable AI Tools Access" in the extension.
+        </div>
+
+        <h3>4.1 What This Feature Does</h3>
+        <p>
+            Readdit Later can connect to external AI tools such as Claude Desktop, Cursor, Windsurf, and other
+            MCP-compatible applications. When enabled, the extension periodically syncs a lightweight copy of your
+            saved posts to our server so these AI tools can search and read your saves on your behalf.
+        </p>
+
+        <h3>4.2 How It Works</h3>
+        <ol>
+            <li>You click "Enable AI Tools Access" in the extension settings</li>
+            <li>A randomly generated token is created locally (not linked to your Reddit username or email)</li>
+            <li>The extension syncs your post metadata to our server every 5 minutes</li>
+            <li>You copy a unique URL and paste it into your AI tool's configuration</li>
+            <li>The AI tool connects to our server using that URL to read your saves</li>
+        </ol>
+
+        <h3>4.3 What Data is Synced</h3>
+        <p>When AI Tools sync is enabled, the following data is sent to our server:</p>
+        <ul>
+            <li>Post titles, subreddit names, author names, URLs, and scores</li>
+            <li>Post text content, truncated to a maximum of 2,000 characters</li>
+            <li>Your labels, notes, and read/unread status</li>
+            <li>Collection names and which posts belong to them</li>
+        </ul>
+        <p>Your Reddit username, email address, and OAuth tokens are never included in the sync.</p>
+
+        <h3>4.4 Data Security</h3>
+        <ul>
+            <li><strong>Encrypted in transit:</strong> All sync data is transmitted over HTTPS/TLS</li>
+            <li><strong>Encrypted at rest:</strong> Server data is stored on Supabase (AWS infrastructure with encryption at rest)</li>
+            <li><strong>Anonymous token:</strong> Your sync token is randomly generated and cannot be traced back to your Reddit account</li>
+            <li><strong>Read-only access:</strong> AI tools can only read your data through this connection; they cannot modify, delete, or write to your extension</li>
+        </ul>
+
+        <h3>4.5 Data Retention and Auto-Deletion</h3>
+        <ul>
+            <li>Synced data that has not been updated in 30 days is automatically and permanently deleted from the server</li>
+            <li>A weekly automated cleanup runs to enforce this retention policy</li>
+            <li>If you stop using the extension, your synced data will be removed within 30 days without any action required</li>
+        </ul>
+
+        <h3>4.6 Disconnect and Delete</h3>
+        <p>
+            You can disconnect from AI Tools at any time by clicking "Disconnect and delete server data" in the extension.
+            This immediately and permanently deletes all your synced data from the server, revokes the sync token,
+            and stops all future data syncing. No residual data remains on the server after disconnection.
+        </p>
+
+        <h2 id="ai-features">5. AI Features and Data Processing</h2>
 
         <div class="ai-notice">
-            <strong>🤖 AI Features Information:</strong> Our AI-powered features process your post content 
+            <strong>AI Features Information:</strong> Our AI-powered features process your post content 
             to provide summaries, sentiment analysis, and auto-labeling. Post content is sent to our server 
             and then to AI providers (OpenRouter/OpenAI) for processing.
         </div>
 
-        <h3>4.1 AI-Powered Features</h3>
+        <h3>5.1 AI-Powered Features</h3>
         <ul>
             <li><strong>AI Summaries:</strong> Automatic post summarization using GPT-4o-mini</li>
             <li><strong>Sentiment Analysis:</strong> Emotion and tone detection</li>
@@ -406,7 +471,7 @@
             <li><strong>AI Chat Agent:</strong> Conversational assistant for searching, organizing, and managing saved posts using Anthropic's Claude 3.5 Haiku model</li>
         </ul>
 
-        <h3>4.2 AI Data Flow</h3>
+        <h3>5.2 AI Data Flow</h3>
         <p>When you use AI features:</p>
         <ol>
             <li>Post content is sent from your browser to our server (reddit-later-server.vercel.app)</li>
@@ -416,7 +481,7 @@
             <li><strong>No data is permanently stored</strong> by AI providers or our processing server</li>
         </ol>
 
-        <h3>4.3 Data Minimization</h3>
+        <h3>5.3 Data Minimization</h3>
         <p>To protect your privacy:</p>
         <ul>
             <li>Long posts are truncated (max 2000-4000 characters depending on feature)</li>
@@ -425,15 +490,15 @@
             <li>Your Reddit username is sent to our server for credit tracking and subscription verification, but is not forwarded to third-party AI providers</li>
         </ul>
 
-        <h3>4.4 AI Chat History</h3>
+        <h3>5.4 AI Chat History</h3>
         <p>
             Conversations with the AI Chat Agent are temporarily stored in your browser's local storage for up to 24 hours to maintain chat continuity.
             This data is automatically deleted after 24 hours or when you clear the chat history. It is never sent to our servers for storage.
         </p>
 
-        <h2 id="data-usage">5. How We Use Your Information</h2>
+        <h2 id="data-usage">6. How We Use Your Information</h2>
 
-        <h3>5.1 Core Extension Functions</h3>
+        <h3>6.1 Core Extension Functions</h3>
         <ul>
             <li>Display and organize your saved Reddit posts</li>
             <li>Synchronize labels, notes, and read status across devices</li>
@@ -441,7 +506,7 @@
             <li>Manage subscription and premium features</li>
         </ul>
 
-        <h3>5.2 Subscription Management</h3>
+        <h3>6.2 Subscription Management</h3>
         <ul>
             <li>Verify premium subscription status</li>
             <li>Process trial activations</li>
@@ -449,7 +514,7 @@
             <li>Link accounts for automatic restoration after reinstall</li>
         </ul>
 
-        <h3>5.3 AI Enhancement</h3>
+        <h3>6.3 AI Enhancement</h3>
         <ul>
             <li>Generate summaries of lengthy posts</li>
             <li>Analyze sentiment and emotional tone</li>
@@ -457,9 +522,9 @@
             <li>Provide semantic search capabilities</li>
         </ul>
 
-        <h2 id="third-party">6. Third-Party Services</h2>
+        <h2 id="third-party">7. Third-Party Services</h2>
 
-        <h3>6.1 Reddit API</h3>
+        <h3>7.1 Reddit API</h3>
         <p>We use Reddit's official API for:</p>
         <ul>
             <li>User authentication via OAuth 2.0</li>
@@ -468,7 +533,7 @@
         </ul>
         <p>Governed by <a href="https://www.reddit.com/policies/privacy-policy" target="_blank">Reddit's Privacy Policy</a>.</p>
 
-        <h3>6.2 Supabase (Database Storage)</h3>
+        <h3>7.2 Supabase (Database Storage)</h3>
         <p>We use Supabase for secure database storage:</p>
         <ul>
             <li>PostgreSQL database for user accounts and synced data</li>
@@ -478,7 +543,7 @@
         </ul>
         <p>Governed by <a href="https://supabase.com/privacy" target="_blank">Supabase's Privacy Policy</a>.</p>
 
-        <h3>6.3 AI Services</h3>
+        <h3>7.3 AI Services</h3>
         <ul>
             <li><strong>OpenRouter API:</strong> Gateway for accessing AI models</li>
             <li><strong>OpenAI (GPT-4o-mini):</strong> Text analysis, summarization, and generation</li>
@@ -487,14 +552,14 @@
         </ul>
         <p>Governed by <a href="https://openai.com/policies/privacy-policy" target="_blank">OpenAI's Privacy Policy</a> and <a href="https://www.anthropic.com/privacy" target="_blank">Anthropic's Privacy Policy</a>.</p>
 
-        <h3>6.4 Payment Processing</h3>
+        <h3>7.4 Payment Processing</h3>
         <ul>
             <li><strong>Dodo Payments:</strong> Handles all payment processing</li>
             <li>We never see or store your credit card information</li>
             <li>We only receive customer/subscription IDs for verification</li>
         </ul>
 
-        <h3>6.5 Notion Integration (Optional)</h3>
+        <h3>7.5 Notion Integration (Optional)</h3>
         <p>If you enable Notion integration:</p>
         <ul>
             <li>OAuth authentication with Notion required</li>
@@ -503,9 +568,9 @@
             <li>Revocable through Notion's integration settings</li>
         </ul>
 
-        <h2 id="data-security">7. Data Storage and Security</h2>
+        <h2 id="data-security">8. Data Storage and Security</h2>
 
-        <h3>7.1 Security Measures</h3>
+        <h3>8.1 Security Measures</h3>
         <ul>
             <li><strong>Encryption in Transit:</strong> All data transmission uses HTTPS/TLS</li>
             <li><strong>Database Security:</strong> Supabase provides encrypted storage and row-level security</li>
@@ -515,7 +580,7 @@
             <li><strong>Minimal Permissions:</strong> Only necessary browser permissions requested</li>
         </ul>
 
-        <h3>7.2 Data Access Control</h3>
+        <h3>8.2 Data Access Control</h3>
         <ul>
             <li>Server access restricted to service roles only</li>
             <li>No manual access to user data without explicit request</li>
@@ -523,16 +588,16 @@
             <li>Regular security updates and monitoring</li>
         </ul>
 
-        <h2 id="user-rights">8. Your Rights and Data Control</h2>
+        <h2 id="user-rights">9. Your Rights and Data Control</h2>
 
-        <h3>8.1 Access Your Data</h3>
+        <h3>9.1 Access Your Data</h3>
         <ul>
             <li><strong>View Locally:</strong> All stored information accessible through extension interface</li>
             <li><strong>Export Data:</strong> Download your labels, notes, and posts in JSON/CSV format</li>
             <li><strong>Server Data:</strong> Request complete copy of your server-stored data</li>
         </ul>
 
-        <h3>8.2 Modify Your Data</h3>
+        <h3>9.2 Modify Your Data</h3>
         <ul>
             <li>Edit or remove labels and notes at any time</li>
             <li>Change privacy and feature preferences</li>
@@ -540,21 +605,21 @@
             <li>Delete specific posts or categories</li>
         </ul>
 
-        <h3>8.3 Control Third-Party Access</h3>
+        <h3>9.3 Control Third-Party Access</h3>
         <ul>
             <li><strong>Reddit:</strong> Revoke extension access via <a href="https://www.reddit.com/prefs/apps/" target="_blank">Reddit's authorized apps</a></li>
             <li><strong>Notion:</strong> Disconnect integration through Notion settings</li>
             <li><strong>AI Features:</strong> Can be disabled in extension settings</li>
         </ul>
 
-        <h2 id="data-deletion">9. Data Deletion and Account Removal</h2>
+        <h2 id="data-deletion">10. Data Deletion and Account Removal</h2>
 
         <div class="important">
             <strong>Right to Erasure (GDPR Article 17):</strong> You have the right to request complete deletion 
             of all your personal data from our servers at any time, for any reason.
         </div>
 
-        <h3>9.1 How to Delete Your Data</h3>
+        <h3>10.1 How to Delete Your Data</h3>
         <p>You can delete your data in two ways:</p>
 
         <h4>Option 1: Through the Extension</h4>
@@ -574,7 +639,7 @@
             <li>We will process your request within 30 days</li>
         </ol>
 
-        <h3>9.2 What Gets Deleted</h3>
+        <h3>10.2 What Gets Deleted</h3>
         <p>When you delete your data, we permanently remove:</p>
         <ul>
             <li>Your user account record (email, Reddit username)</li>
@@ -583,14 +648,14 @@
             <li>Any server logs containing your identifiable information</li>
         </ul>
 
-        <h3>9.3 What Remains</h3>
+        <h3>10.3 What Remains</h3>
         <ul>
             <li><strong>Local Data:</strong> Data stored in your browser remains until you uninstall the extension or clear browser data</li>
             <li><strong>Anonymized Analytics:</strong> Aggregate usage statistics (no personal identifiers)</li>
             <li><strong>Legal Records:</strong> Minimal billing records may be retained for tax/legal compliance (typically 7 years)</li>
         </ul>
 
-        <h3>9.4 Data Export Before Deletion</h3>
+        <h3>10.4 Data Export Before Deletion</h3>
         <p>Before deleting your data, you can:</p>
         <ul>
             <li>Export all your labels and notes as JSON/CSV</li>
@@ -598,16 +663,16 @@
             <li>Save your data locally or transfer to another service</li>
         </ul>
 
-        <h2 id="data-retention">10. Data Retention</h2>
+        <h2 id="data-retention">11. Data Retention</h2>
 
-        <h3>10.1 Active Account Data</h3>
+        <h3>11.1 Active Account Data</h3>
         <ul>
             <li><strong>User Accounts:</strong> Retained while your subscription is active or for 1 year after cancellation</li>
             <li><strong>Synced Data:</strong> Labels, notes, and read status retained indefinitely while account is active</li>
             <li><strong>Inactive Accounts:</strong> Accounts inactive for 2+ years may be deleted after email notification</li>
         </ul>
 
-        <h3>10.2 Temporary Data</h3>
+        <h3>11.2 Temporary Data</h3>
         <ul>
             <li><strong>OAuth Tokens:</strong> Stored locally until logout or expiration</li>
             <li><strong>AI Processing:</strong> No permanent retention by AI services</li>
@@ -615,13 +680,13 @@
             <li><strong>Cache Data:</strong> Cleared periodically based on usage patterns</li>
         </ul>
 
-        <h3>10.3 Legal Retention</h3>
+        <h3>11.3 Legal Retention</h3>
         <ul>
             <li><strong>Financial Records:</strong> Subscription payment records retained for 7 years (tax compliance)</li>
             <li><strong>Legal Disputes:</strong> Data may be retained if involved in legal proceedings</li>
         </ul>
 
-        <h2 id="children">11. Children's Privacy</h2>
+        <h2 id="children">12. Children's Privacy</h2>
 
         <p>
             Readdit Later is not intended for children under 13 years of age. Since the extension requires a Reddit account, 
@@ -630,7 +695,7 @@
             collected data from a child, please contact us immediately.
         </p>
 
-        <h2 id="updates">12. Policy Updates</h2>
+        <h2 id="updates">13. Policy Updates</h2>
 
         <p>We may update this Privacy Policy to reflect:</p>
         <ul>
@@ -640,7 +705,7 @@
             <li>Industry best practices</li>
         </ul>
 
-        <h3>12.1 Notification of Changes</h3>
+        <h3>13.1 Notification of Changes</h3>
         <ul>
             <li>The "Last Updated" date will be revised</li>
             <li>Significant changes highlighted in extension update notes</li>
@@ -648,14 +713,14 @@
             <li>Email notification for major changes (if email provided)</li>
         </ul>
 
-        <h3>12.2 Your Consent</h3>
+        <h3>13.2 Your Consent</h3>
         <ul>
             <li>Continued use after updates constitutes acceptance</li>
             <li>Material changes may require explicit re-consent</li>
             <li>You can always request clarification via email</li>
         </ul>
 
-        <h2 id="contact">13. Contact Information</h2>
+        <h2 id="contact">14. Contact Information</h2>
 
         <div class="contact-info">
             <h3>Privacy Questions & Data Requests</h3>
