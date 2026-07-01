@@ -85,12 +85,20 @@
             margin-bottom: 10px;
         }
 
+        h4 {
+            color: #495057;
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+
         p {
             margin-bottom: 15px;
             text-align: justify;
         }
 
-        ul {
+        ul, ol {
             margin: 15px 0;
             padding-left: 30px;
         }
@@ -253,7 +261,7 @@
     <div class="policy-content">
         <div class="effective-date">
             <strong>Effective Date:</strong> January 14, 2026<br>
-            <strong>Last Updated:</strong> June 10, 2026
+            <strong>Last Updated:</strong> July 1, 2026
         </div>
 
         <div class="toc">
@@ -278,12 +286,12 @@
 
         <h2 id="introduction">1. Introduction</h2>
         <p>
-            Welcome to Readdit Later, a Chrome extension designed to help you save, organize, and enhance your Reddit experience. 
+            Welcome to Readdit Later, a Chrome extension designed to help you save, organize, and enhance your Reddit experience.
             This Privacy Policy explains how we collect, use, store, and protect your information when you use our extension and its features.
         </p>
 
         <div class="important">
-            <strong>Transparency First:</strong> Readdit Later uses both local browser storage and secure server storage. 
+            <strong>Transparency First:</strong> Readdit Later uses both local browser storage and secure server storage.
             This policy clearly explains what data is stored where, why we store it, and how you can control or delete it at any time.
         </div>
 
@@ -303,7 +311,7 @@
             <li><strong>Saved Posts:</strong> Titles, content, URLs, subreddit names, scores, and metadata</li>
             <li><strong>User Labels:</strong> AI-generated or custom labels you assign to posts</li>
             <li><strong>Personal Notes:</strong> Notes you add to saved posts</li>
-            <li><strong>Read Status:</strong> Which posts you've marked as read or unread</li>
+            <li><strong>Read Status:</strong> Which posts you have marked as read or unread</li>
         </ul>
 
         <h3>2.3 Subscription Information</h3>
@@ -318,7 +326,7 @@
         <ul>
             <li>Your Reddit password or login credentials</li>
             <li>Private messages or direct communications</li>
-            <li>Posts you haven't explicitly saved</li>
+            <li>Posts you have not explicitly saved</li>
             <li>Your browsing history outside of Reddit</li>
             <li>Location data or device fingerprinting</li>
             <li>Credit card or payment information (handled by Dodo Payments)</li>
@@ -328,7 +336,7 @@
 
         <div class="server-notice">
             <strong>Important: Server Storage Disclosure</strong><br>
-            Unlike purely local extensions, Readdit Later stores certain data on our secure servers (Supabase) 
+            Unlike purely local extensions, Readdit Later stores certain data on our secure servers (Supabase)
             to enable premium features like cross-device sync and persistent data storage.
         </div>
 
@@ -457,8 +465,8 @@
         <h2 id="ai-features">5. AI Features and Data Processing</h2>
 
         <div class="ai-notice">
-            <strong>AI Features Information:</strong> Our AI-powered features process your post content 
-            to provide summaries, sentiment analysis, and auto-labeling. Post content is sent to our server 
+            <strong>AI Features Information:</strong> Our AI-powered features process your post content
+            to provide summaries, sentiment analysis, and auto-labeling. Post content is sent to our server
             and then to AI providers (OpenRouter/OpenAI) for processing.
         </div>
 
@@ -469,7 +477,7 @@
             <li><strong>Auto-Labeling:</strong> Automatic categorization</li>
             <li><strong>Natural Language Search:</strong> Semantic search using embeddings</li>
             <li><strong>Subreddit Analysis:</strong> Community insights</li>
-            <li><strong>AI Chat Agent:</strong> Conversational assistant for searching, organizing, and managing saved posts using Anthropic's Claude 3.5 Haiku model</li>
+            <li><strong>AI Chat Agent:</strong> Conversational assistant for searching, organizing, and managing saved posts using Anthropic's Claude model</li>
         </ul>
 
         <h3>5.2 AI Data Flow</h3>
@@ -525,14 +533,25 @@
 
         <h2 id="third-party">7. Third-Party Services</h2>
 
-        <h3>7.1 Reddit API</h3>
-        <p>We use Reddit's official API for:</p>
+        <h3>7.1 Reddit</h3>
+        <p>We interact with Reddit in two ways:</p>
+
+        <h4>OAuth 2.0 Authentication</h4>
         <ul>
-            <li>User authentication via OAuth 2.0</li>
-            <li>Retrieving saved posts and profile information</li>
-            <li>Performing save/unsave operations</li>
+            <li>Used to verify your Reddit identity and link your account</li>
+            <li>Enables background sync when you are not actively browsing Reddit</li>
+            <li>OAuth tokens are stored locally in your browser only and never sent to our servers</li>
         </ul>
-        <p>Governed by <a href="https://www.reddit.com/policies/privacy-policy" target="_blank">Reddit's Privacy Policy</a>.</p>
+
+        <h4>Browser-Native Capture</h4>
+        <ul>
+            <li>When you visit your Reddit saved posts page, the extension reads the data your browser already loads — no separate API calls are made to Reddit on your behalf</li>
+            <li>The extension automatically scrolls your saved posts page to capture your full history, including posts beyond Reddit's 1,000-item display limit</li>
+            <li>This method uses your existing logged-in browser session and is functionally equivalent to you manually scrolling through your saved posts</li>
+            <li>No additional Reddit credentials or API keys are required for this feature</li>
+        </ul>
+
+        <p>All Reddit interactions are governed by <a href="https://www.reddit.com/policies/privacy-policy" target="_blank">Reddit's Privacy Policy</a>.</p>
 
         <h3>7.2 Supabase (Database Storage)</h3>
         <p>We use Supabase for secure database storage:</p>
@@ -548,7 +567,7 @@
         <ul>
             <li><strong>OpenRouter API:</strong> Gateway for accessing AI models</li>
             <li><strong>OpenAI (GPT-4o-mini):</strong> Text analysis, summarization, and generation</li>
-            <li><strong>Anthropic (Claude 3.5 Haiku):</strong> AI Chat Agent conversations and tool-assisted post management</li>
+            <li><strong>Anthropic (Claude):</strong> AI Chat Agent conversations and tool-assisted post management</li>
             <li><strong>Processing:</strong> Via our secure server (reddit-later-server.vercel.app)</li>
         </ul>
         <p>Governed by <a href="https://openai.com/policies/privacy-policy" target="_blank">OpenAI's Privacy Policy</a> and <a href="https://www.anthropic.com/privacy" target="_blank">Anthropic's Privacy Policy</a>.</p>
@@ -616,7 +635,7 @@
         <h2 id="data-deletion">10. Data Deletion and Account Removal</h2>
 
         <div class="important">
-            <strong>Right to Erasure (GDPR Article 17):</strong> You have the right to request complete deletion 
+            <strong>Right to Erasure (GDPR Article 17):</strong> You have the right to request complete deletion
             of all your personal data from our servers at any time, for any reason.
         </div>
 
@@ -626,7 +645,7 @@
         <h4>Option 1: Through the Extension</h4>
         <ol>
             <li>Open Readdit Later extension</li>
-            <li>Go to Settings → Privacy & Data</li>
+            <li>Go to Settings &rarr; Privacy &amp; Data</li>
             <li>Click "Delete My Data" button</li>
             <li>Confirm deletion (irreversible action)</li>
             <li>All server-stored data will be permanently deleted within 24 hours</li>
@@ -690,9 +709,9 @@
         <h2 id="children">12. Children's Privacy</h2>
 
         <p>
-            Readdit Later is not intended for children under 13 years of age. Since the extension requires a Reddit account, 
-            users must meet Reddit's minimum age requirements (13+ in most jurisdictions, 16+ in some regions). 
-            We do not knowingly collect personal information from children. If you believe we have inadvertently 
+            Readdit Later is not intended for children under 13 years of age. Since the extension requires a Reddit account,
+            users must meet Reddit's minimum age requirements (13+ in most jurisdictions, 16+ in some regions).
+            We do not knowingly collect personal information from children. If you believe we have inadvertently
             collected data from a child, please contact us immediately.
         </p>
 
@@ -724,7 +743,7 @@
         <h2 id="contact">14. Contact Information</h2>
 
         <div class="contact-info">
-            <h3>Privacy Questions & Data Requests</h3>
+            <h3>Privacy Questions &amp; Data Requests</h3>
             <p>
                 For privacy questions, data access requests, deletion requests, or concerns:
             </p>
@@ -735,9 +754,9 @@
             </p>
             <p>
                 <strong>For Data Deletion Requests, Include:</strong><br>
-                • Your Reddit username or email address<br>
-                • Specific data you want deleted (or "all data")<br>
-                • Confirmation that you understand deletion is irreversible
+                Your Reddit username or email address<br>
+                Specific data you want deleted (or "all data")<br>
+                Confirmation that you understand deletion is irreversible
             </p>
         </div>
 
@@ -787,7 +806,7 @@
         <ul>
             <li><strong>Right to Know:</strong> What personal information we collect</li>
             <li><strong>Right to Delete:</strong> Request deletion of your information</li>
-            <li><strong>Right to Opt-Out:</strong> Opt out of data "sales" (we don't sell data)</li>
+            <li><strong>Right to Opt-Out:</strong> Opt out of data "sales" (we do not sell data)</li>
             <li><strong>Right to Non-Discrimination:</strong> Equal service regardless of privacy choices</li>
         </ul>
 
@@ -801,16 +820,16 @@
         </ul>
 
         <div class="highlight">
-            <strong>Transparency Commitment:</strong> We believe in complete transparency about data collection. 
-            This policy honestly discloses all data we collect, where it's stored, and how you can control it. 
+            <strong>Transparency Commitment:</strong> We believe in complete transparency about data collection.
+            This policy honestly discloses all data we collect, where it is stored, and how you can control it.
             We will never sell your personal data to third parties.
         </div>
 
         <h2>Acknowledgments</h2>
 
         <p>
-            By using Readdit Later, you acknowledge that you have read, understood, and agree to be bound by this Privacy Policy. 
-            Your use of premium features (AI processing, cross-device sync) constitutes consent for the server-side data storage 
+            By using Readdit Later, you acknowledge that you have read, understood, and agree to be bound by this Privacy Policy.
+            Your use of premium features (AI processing, cross-device sync) constitutes consent for the server-side data storage
             described in this policy. If you disagree with any part of this policy, you may discontinue use and request data deletion.
         </p>
     </div>
@@ -818,7 +837,7 @@
 
 <div class="footer">
     <p style="text-align: center;">
-        © 2026 Readdit Later. This extension is not affiliated with Reddit, Inc.<br>
+        &copy; 2026 Readdit Later. This extension is not affiliated with Reddit, Inc.<br>
         Reddit is a trademark of Reddit, Inc. | OpenAI, Notion, and Supabase are trademarks of their respective owners.
     </p>
 </div>
