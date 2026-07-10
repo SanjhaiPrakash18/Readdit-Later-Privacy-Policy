@@ -261,7 +261,7 @@
     <div class="policy-content">
         <div class="effective-date">
             <strong>Effective Date:</strong> January 14, 2026<br>
-            <strong>Last Updated:</strong> July 1, 2026
+            <strong>Last Updated:</strong> July 10, 2026
         </div>
 
         <div class="toc">
@@ -270,7 +270,7 @@
                 <li><a href="#introduction">1. Introduction</a></li>
                 <li><a href="#information-collected">2. Information We Collect</a></li>
                 <li><a href="#server-storage">3. Server-Side Data Storage</a></li>
-                <li><a href="#ai-tools-sync">4. AI Tools Integration (MCP Sync)</a></li>
+                <li><a href="#ai-tools-sync">4. AI Tools Integration (MCP)</a></li>
                 <li><a href="#ai-features">5. AI Features and Data Processing</a></li>
                 <li><a href="#data-usage">6. How We Use Your Information</a></li>
                 <li><a href="#third-party">7. Third-Party Services</a></li>
@@ -322,7 +322,15 @@
             <li>First installation date</li>
         </ul>
 
-        <h3>2.4 What We Do NOT Collect</h3>
+        <h3>2.4 Usage Analytics (First-Party Only)</h3>
+        <p>
+            To understand which features are used and improve the product, the extension sends feature-usage events
+            (for example, which feature was opened and when) to our own server, associated with your Reddit username.
+            These events describe how you use the extension — they do not include the content of your saved posts, notes,
+            or searches. We do not use any third-party analytics or tracking services (no Google Analytics, no external trackers).
+        </p>
+
+        <h3>2.5 What We Do NOT Collect</h3>
         <ul>
             <li>Your Reddit password or login credentials</li>
             <li>Private messages or direct communications</li>
@@ -378,6 +386,13 @@
             <li>Creation and update timestamps</li>
         </ul>
 
+        <h4>Usage Analytics Table:</h4>
+        <ul>
+            <li>Reddit username</li>
+            <li>Feature-usage event names and timestamps</li>
+            <li>No saved-post content, notes, or search queries</li>
+        </ul>
+
         <h4>AI Tools Sync Table (opt-in only):</h4>
         <ul>
             <li>Randomly generated token (not linked to your Reddit identity)</li>
@@ -401,24 +416,31 @@
         <p>These remain local to your browser only:</p>
         <ul>
             <li>Reddit OAuth tokens (access/refresh tokens)</li>
-            <li>Cached Reddit posts content</li>
+            <li>Cached Reddit posts content (unless you opt in to AI Tools sync, described in Section 4)</li>
             <li>Extension settings and preferences</li>
             <li>AI embeddings cache</li>
             <li>Local search history</li>
         </ul>
 
-        <h2 id="ai-tools-sync">4. AI Tools Integration (MCP Sync)</h2>
+        <h2 id="ai-tools-sync">4. AI Tools Integration (MCP)</h2>
+
+        <p>
+            Readdit Later supports MCP (Model Context Protocol), an open standard that lets AI assistants connect to
+            external tools. There are <strong>two separate ways</strong> to connect your saves to AI tools, with very
+            different privacy characteristics: a <strong>remote connector</strong> (uses our server, opt-in sync) and a
+            <strong>local MCP server</strong> (runs entirely on your own computer, no server involved).
+        </p>
 
         <div class="server-notice">
-            <strong>Opt-in Feature:</strong> The AI Tools sync feature is entirely optional. No data is synced to the server
+            <strong>Opt-in Feature:</strong> The remote AI Tools sync feature is entirely optional. No data is synced to the server
             until you explicitly enable it by clicking "Enable AI Tools Access" in the extension.
         </div>
 
-        <h3>4.1 What This Feature Does</h3>
+        <h3>4.1 Remote Connector — What It Does</h3>
         <p>
-            Readdit Later can connect to external AI tools such as Claude Desktop, Cursor, Windsurf, and other
-            MCP-compatible applications. When enabled, the extension periodically syncs a lightweight copy of your
-            saved posts to our server so these AI tools can search and read your saves on your behalf.
+            The remote connector lets AI tools that support remote MCP servers — such as Claude (web, desktop, and mobile)
+            via custom connectors — search and read your saves from anywhere. When enabled, the extension periodically
+            syncs a lightweight copy of your saved posts to our server so these AI tools can access them on your behalf.
         </p>
 
         <h3>4.2 How It Works</h3>
@@ -431,7 +453,7 @@
         </ol>
 
         <h3>4.3 What Data is Synced</h3>
-        <p>When AI Tools sync is enabled, the following data is sent to our server:</p>
+        <p>When remote AI Tools sync is enabled, the following data is sent to our server:</p>
         <ul>
             <li>Post titles, subreddit names, author names, URLs, and scores</li>
             <li>Post text content, truncated to a maximum of 2,000 characters</li>
@@ -445,7 +467,7 @@
             <li><strong>Encrypted in transit:</strong> All sync data is transmitted over HTTPS/TLS</li>
             <li><strong>Encrypted at rest:</strong> Server data is stored on Supabase (AWS infrastructure with encryption at rest)</li>
             <li><strong>Anonymous token:</strong> Your sync token is randomly generated and cannot be traced back to your Reddit account</li>
-            <li><strong>Read-only access:</strong> AI tools can only read your data through this connection; they cannot modify, delete, or write to your extension</li>
+            <li><strong>Read-only access:</strong> AI tools connecting through the remote URL can only read your data; they cannot modify, delete, or write to your extension. (The local MCP server, described in Section 4.7, supports read-write actions — on your own machine only.)</li>
         </ul>
 
         <h3>4.5 Data Retention and Auto-Deletion</h3>
@@ -461,6 +483,23 @@
             This immediately and permanently deletes all your synced data from the server, revokes the sync token,
             and stops all future data syncing. No residual data remains on the server after disconnection.
         </p>
+
+        <h3>4.7 Local MCP Server (No Server Involved)</h3>
+        <p>
+            Separately from the remote connector, Readdit Later offers a local MCP server
+            (<code>npx readdit-later-mcp</code>) for AI tools that run on your computer, such as Claude Desktop and Cursor.
+        </p>
+        <ul>
+            <li><strong>Runs entirely on your machine:</strong> The local server connects to the extension through a local
+                connection on your own computer (127.0.0.1). Your data is read directly from your browser and is never
+                sent to our servers or any external service through this connection.</li>
+            <li><strong>Read-write by design:</strong> Unlike the remote connector, the local MCP server can also act on your
+                library when your AI tool requests it — applying labels, managing collections, adding notes, marking posts
+                read, deleting posts from your library, and exporting to CSV or Markdown. These actions run locally and only
+                when you ask your AI tool to perform them.</li>
+            <li><strong>Fully under your control:</strong> Stop the local server or close your AI tool at any time to end access.
+                Nothing persists outside your own machine.</li>
+        </ul>
 
         <h2 id="ai-features">5. AI Features and Data Processing</h2>
 
@@ -531,6 +570,12 @@
             <li>Provide semantic search capabilities</li>
         </ul>
 
+        <h3>6.4 Product Improvement</h3>
+        <ul>
+            <li>Analyze first-party feature-usage events to understand which features are valuable</li>
+            <li>Identify and fix errors and performance issues</li>
+        </ul>
+
         <h2 id="third-party">7. Third-Party Services</h2>
 
         <h3>7.1 Reddit</h3>
@@ -588,6 +633,14 @@
             <li>Revocable through Notion's integration settings</li>
         </ul>
 
+        <h3>7.6 Crisp (Support Chat, Optional)</h3>
+        <p>
+            The extension dashboard includes an optional support chat provided by Crisp, loaded as an embedded frame.
+            It is only active when you open the chat panel. Any information you type into the support chat is processed by Crisp
+            and governed by <a href="https://crisp.chat/en/privacy/" target="_blank">Crisp's Privacy Policy</a>.
+            We do not send your saved posts, labels, or notes to Crisp.
+        </p>
+
         <h2 id="data-security">8. Data Storage and Security</h2>
 
         <h3>8.1 Security Measures</h3>
@@ -630,6 +683,7 @@
             <li><strong>Reddit:</strong> Revoke extension access via <a href="https://www.reddit.com/prefs/apps/" target="_blank">Reddit's authorized apps</a></li>
             <li><strong>Notion:</strong> Disconnect integration through Notion settings</li>
             <li><strong>AI Features:</strong> Can be disabled in extension settings</li>
+            <li><strong>AI Tools (MCP):</strong> Disconnect the remote connector and delete synced data from the extension at any time; stop the local MCP server whenever you choose</li>
         </ul>
 
         <h2 id="data-deletion">10. Data Deletion and Account Removal</h2>
@@ -665,6 +719,8 @@
             <li>Your user account record (email, Reddit username)</li>
             <li>All subscription information</li>
             <li>All synced labels, notes, and read status</li>
+            <li>All AI Tools (MCP) synced data and tokens</li>
+            <li>All usage analytics events linked to your username</li>
             <li>Any server logs containing your identifiable information</li>
         </ul>
 
@@ -689,6 +745,7 @@
         <ul>
             <li><strong>User Accounts:</strong> Retained while your subscription is active or for 1 year after cancellation</li>
             <li><strong>Synced Data:</strong> Labels, notes, and read status retained indefinitely while account is active</li>
+            <li><strong>AI Tools (MCP) Sync Data:</strong> Automatically deleted after 30 days without a sync</li>
             <li><strong>Inactive Accounts:</strong> Accounts inactive for 2+ years may be deleted after email notification</li>
         </ul>
 
@@ -766,10 +823,13 @@
         <p>Our extension requests these specific Chrome permissions:</p>
         <ul>
             <li><strong>storage:</strong> Store your data and preferences locally</li>
+            <li><strong>unlimitedStorage:</strong> Allow large save libraries to be cached locally without hitting browser storage caps</li>
             <li><strong>tabs:</strong> Open Reddit links and manage extension interface</li>
-            <li><strong>alarms:</strong> Schedule background synchronization</li>
+            <li><strong>alarms:</strong> Schedule background synchronization and auto-export</li>
             <li><strong>identity:</strong> Handle secure Reddit OAuth authentication</li>
             <li><strong>sidePanel:</strong> Display extension interface in Chrome's side panel</li>
+            <li><strong>notifications:</strong> Show completion notifications for sync and auto-export</li>
+            <li><strong>downloads:</strong> Save your exported files (CSV, JSON, Markdown, etc.) to your computer</li>
         </ul>
 
         <h3>Host Permissions</h3>
@@ -778,6 +838,7 @@
             <li><strong>https://www.reddit.com/*:</strong> Interact with Reddit website</li>
             <li><strong>https://oauth.reddit.com/*:</strong> Reddit OAuth authentication</li>
             <li><strong>https://api.reddit.com/*:</strong> Access Reddit's API</li>
+            <li><strong>https://gql.reddit.com/* and https://gateway.reddit.com/*:</strong> Read the saved-posts data Reddit's own interface loads (used by browser-native capture)</li>
             <li><strong>https://reddit-later-server.vercel.app/*:</strong> Our server for AI processing and data sync</li>
             <li><strong>https://api.notion.com/*:</strong> Optional Notion integration</li>
             <li><strong>https://api.openai.com/*:</strong> AI features (via our server)</li>
@@ -786,6 +847,8 @@
             <li><strong>https://styles.redditmedia.com/*:</strong> Load Reddit stylesheets and media</li>
             <li><strong>https://preview.redd.it/*:</strong> Display Reddit image previews</li>
             <li><strong>https://i.redd.it/*:</strong> Display Reddit-hosted images</li>
+            <li><strong>https://imgur.com/* and https://i.imgur.com/*:</strong> Display Imgur images embedded in saved posts</li>
+            <li><strong>http://127.0.0.1:52849/*:</strong> Local connection between the extension and the optional local MCP server — this traffic never leaves your computer</li>
         </ul>
 
         <h2>Legal Compliance</h2>
@@ -814,8 +877,8 @@
         <p>We process your data based on:</p>
         <ul>
             <li><strong>Contract Performance:</strong> Providing the extension service and premium features</li>
-            <li><strong>Legitimate Interest:</strong> Improving service quality and security</li>
-            <li><strong>Consent:</strong> AI features and optional integrations</li>
+            <li><strong>Legitimate Interest:</strong> Improving service quality and security, including first-party usage analytics</li>
+            <li><strong>Consent:</strong> AI features, AI Tools (MCP) sync, and optional integrations</li>
             <li><strong>Legal Obligation:</strong> Compliance with tax and financial regulations</li>
         </ul>
 
@@ -838,7 +901,7 @@
 <div class="footer">
     <p style="text-align: center;">
         &copy; 2026 Readdit Later. This extension is not affiliated with Reddit, Inc.<br>
-        Reddit is a trademark of Reddit, Inc. | OpenAI, Notion, and Supabase are trademarks of their respective owners.
+        Reddit is a trademark of Reddit, Inc. | OpenAI, Anthropic, Notion, Supabase, and Crisp are trademarks of their respective owners.
     </p>
 </div>
 </body>
